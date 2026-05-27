@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Samurai · Портфолио и резюме</title>
+  
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ========== 10 селекторов с комментариями ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        p { margin-bottom: 12px; }
+        .highlight {
+            background-color: rgba(255, 51, 102, 0.15);
+            padding: 6px 12px;
+            border-radius: 8px;
+            border-left: 3px solid #ff3366;
+            text-decoration: underline;
+        }
+        #footer-note { font-size: 0.75rem; opacity: 0.7; }
+        tbody tr:nth-child(odd) { background-color: rgba(255, 51, 102, 0.05); }
+        a[href*="fandom"]::before { font-size: 0.8rem; }
+        .discography > li { font-weight: 500; letter-spacing: 0.3px; }
+        h2:first-of-type + p { margin-top: 0; }
+        h2:first-of-type ~ p { padding-left: 12px; border-left: 2px solid rgba(255, 51, 102, 0.3); }
+        a[href*="fandom"] { transition: all 0.2s ease; }
+
+        /* ========== ОСНОВНЫЕ СТИЛИ (оставляем почти всё как было) ========== */
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0c12;
+            color: #eef2ff;
+            line-height: 1.5;
+            padding: 2rem;
+        }
+        h1, h2, h3, h4 { font-family: 'Orbitron', monospace; font-weight: 700; letter-spacing: 1px; }
+        h1 {
+            font-size: 3rem;
+            background: linear-gradient(135deg, #ff3366, #ffaa33);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            text-shadow: 0 0 8px rgba(255,51,102,0.3);
+            margin-bottom: 0.5rem;
+        }
+        h2 { font-size: 1.8rem; border-left: 4px solid #ff3366; padding-left: 1rem; margin: 2rem 0 1rem; color: #ffcc88; }
+        h3 { font-size: 1.4rem; color: #ffaa66; margin: 1.5rem 0 0.8rem; }
+        a { color: #ff9966; text-decoration: none; border-bottom: 1px dashed rgba(255,51,102,0.5); transition: all 0.2s; }
+        a:hover { color: #ffcc88; border-bottom-color: #ff3366; text-shadow: 0 0 3px #ff3366; }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 1.5rem 0;
+            background: rgba(15, 25, 35, 0.6);
+            backdrop-filter: blur(2px);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        th, td { padding: 12px 10px; border: 1px solid #ff5566; }
+        th { background: #1e2a3a; color: #ffaa88; font-family: 'Orbitron', monospace; }
+        form {
+            background: rgba(20, 30, 45, 0.7);
+            border-radius: 16px;
+            padding: 1.8rem;
+            margin: 1.5rem 0;
+            border: 1px solid #ff3366;
+            box-shadow: 0 0 12px rgba(255,51,102,0.2);
+        }
+        input, textarea, select {
+            background: #0f1725;
+            border: 1px solid #ff6680;
+            padding: 8px 12px;
+            border-radius: 6px;
+            color: #eef;
+            font-family: inherit;
+            width: 100%;
+            max-width: 400px;
+            transition: 0.2s;
+        }
+        input:focus, textarea:focus { outline: none; border-color: #ffaa66; box-shadow: 0 0 5px #ffaa66; }
+        button {
+            background: linear-gradient(90deg, #ff3366, #ff6633);
+            border: none;
+            padding: 8px 24px;
+            font-family: 'Orbitron', monospace;
+            font-weight: bold;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        button:hover { transform: scale(1.02); box-shadow: 0 0 12px #ff3366; }
+        figure {
+            display: inline-block;
+            background: #11161f;
+            padding: 8px;
+            border-radius: 12px;
+            border: 1px solid #ff3366;
+            margin: 0 1rem 1rem 0;
+            transition: 0.2s;
+        }
+        figure:hover { transform: translateY(-3px); box-shadow: 0 8px 20px rgba(255,51,102,0.2); }
+        img { border-radius: 8px; display: block; }
+        figcaption { font-size: 0.8rem; margin-top: 6px; color: #ccaa88; }
+        .rotate-photo { display: inline-block; transition: transform 0.3s ease; }
+        .rotate-photo:hover { animation: spin 0.6s linear 1; }
+        @keyframes spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
+        .internal-demo {
+            background: #1e2a3a;
+            border-left: 4px solid #ffaa33;
+            padding: 12px;
+            margin: 12px 0;
+            border-radius: 8px;
+            font-family: monospace;
+        }
+        hr { border: none; height: 2px; background: linear-gradient(90deg, #ff3366, #ffaa33, #ff3366); margin: 1.5rem 0; }
+        footer { margin-top: 3rem; padding: 1rem; border-top: 1px solid #ff3366; font-size: 0.8rem; color: #99aacc; }
+        
+        /* старые стили для списков (молнии) – отключаем, т.к. будем использовать flex */
+        .discography, .star-marker, .flex-photos, .flex-media, .flex-css-demos {
+            list-style: none;
+            padding-left: 0;
+        }
+        /* ========== НОВЫЕ FLEX-СТИЛИ (меняем существующие блоки) ========== */
+        /* 1. Дискография – горизонтальный flex с переносом */
+        .discography {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px 24px;
+            justify-content: flex-start;
+            margin: 20px 0;
+        }
+        .discography li {
+            background: rgba(255,51,102,0.1);
+            padding: 6px 14px;
+            border-radius: 40px;
+            border: 1px solid #ff6680;
+            position: static; /* убираем relative для псевдоэлемента */
+        }
+        .discography li::before { content: none; } /* убираем молнию */
+        
+        /* 2. Список ссылок (star-marker) – исправлен селектор, сделан flex */
+        .star-marker {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .star-marker li {
+            padding-left: 0;
+            margin: 0;
+            position: static;
+        }
+        .star-marker li::before { content: none; } /* убираем картинку */
+        .star-marker a {
+            background: rgba(255,51,102,0.15);
+            padding: 6px 16px;
+            border-radius: 30px;
+            border-bottom: none;
+        }
+        
+        /* 3. Фотографии – оборачиваем в .flex-photos (добавлю в HTML) */
+        .flex-photos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        .flex-photos figure { margin: 0; } /* убираем лишние отступы */
+        
+        /* 4. Медиа-блоки (аудио+видео) – flex */
+        .flex-media {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 30px;
+            align-items: center;
+            margin: 20px 0;
+        }
+        .flex-media > div { flex: 1 1 250px; }
+        
+        /* 5. Способы подключения CSS – четыре блока в flex-ряд */
+        .flex-css-demos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            justify-content: space-between;
+            margin: 20px 0;
+        }
+        .flex-css-demos > div { flex: 1 1 180px; margin: 0; }
+        
+        /* сохраняем стили для импортированных блоков, чтобы не сломать */
+        .external-demo, .import-demo { background: #0f212e; border-left: 4px solid #00d2ff; padding: 12px; border-radius: 8px; font-family: monospace; }
+        .import-demo { background: #1e2a2a; border-left-color: #88ff66; }
+    </style>
+    <style>
+        @import url('import.css');
+    </style>
+</head>
+<body>
+
+    <h1>SAMURAI</h1>
+    <h2>Портфолио легендарной группы Найт-Сити</h2>
+    <hr>
+    <h3>Резюме · Достижения · Дискография</h3>
+
+    <h2>О группе</h2>
+    <p class="highlight">
+        <strong>SAMURAI</strong> - культовая рок-группа, основанная в 2000 году в Найт-Сити.
+        Их музыка сочетает панк-рок, метал и индастриал. Коллектив распался в 2008, 
+        но остаётся символом бунта против корпораций. Вокалист - Джонни Сильверхенд, 
+        гитарист - Керри Евродин.
+    </p>
+    <p>
+        <strong>Основные достижения:</strong> три студийных альбома, платиновый статус 
+        «No Future», хит «Chippin' In» - негласный гимн рокеров, аншлаги на стадионах.
+    </p>
+
+    <h2>Дискография</h2>
+    <ul class="discography">
+        <li>2003 - The Samurai Album</li>
+        <li>2005 - Never Fade Away (сингл)</li>
+        <li>2007 - No Future</li>
+        <li>2020 - Посмертные сборники</li>
+    </ul>
+
+    <h3>Топ-3 песен по версии фанатов</h3>
+    <ol>
+        <li>Chippin' In</li>
+        <li>Never Fade Away</li>
+        <li>Black Dog</li>
+    </ol>
+
+    <h2>Фото группы</h2>
+    <div class="flex-photos">
+        <figure>
+            <img src="Images/Morro.jpg" alt="Samurai live 2005" width="400" height="250">
+            <figcaption>Концерт в парке «Морро», 2005</figcaption>
+        </figure>
+        <figure>
+            <img class="rotate-photo" src="Images/Jhonny.jpg" alt="Johnny Silverhand" width="300" height="250">
+            <figcaption>Джонни Сильверхенд, фронтмен (наведи для вращения)</figcaption>
+        </figure>
+    </div>
+
+    <h2>Ссылки</h2>
+    <ul class="star-marker">
+        <li><a href="https://cyberpunk.fandom.com/ru/wiki/Samurai">Вики-сайт SAMURAI</a></li>
+        <li><a href="https://cyberpunk.fandom.com/ru/wiki/Джонни_Сильверхенд">Джонни Сильверхенд</a></li>
+        <li><a href="https://cyberpunk.fandom.com/ru/wiki/Керри_Евродин">Керри Евродин</a></li>
+        <li><a href="https://cyberpunk.fandom.com/ru/wiki/Генри">Генри</a></li>
+        <li><a href="https://cyberpunk.fandom.com/ru/wiki/Денни">Дэнни</a></li>
+        <li><a href="https://cyberpunk.fandom.com/ru/wiki/Нэнси_Хартли">Нэнси Хартли</a></li>
+    </ul>
+
+    <h2>Медиа</h2>
+    <div class="flex-media">
+        <div>
+            <h3>Аудио</h3>
+            <audio src="audio/SAMURAI_Refused_-_Chippin_In_65258049.mp3" controls style="width: 100%; max-width: 500px;"></audio>
+            <p>(пример трека - Chippin' In)</p>
+        </div>
+        <div>
+            <h3>Видео</h3>
+            <video src="video/CyberShow.mp4" controls width="400" style="border-radius: 8px; border: 1px solid #ff6680;"></video>
+        </div>
+    </div>
+
+    <h2>Состав группы</h2>
+    <table>
+        <thead>
+            <tr><th>Участник</th><th>Роль</th><th>Годы активности</th> </tr>
+        </thead>
+        <tbody>
+            <tr><td>Johnny Silverhand</td><td>вокал, гитара</td><td>2000–2008</td> </tr>
+            <tr><td>Kerry Eurodyne</td><td>гитара, бэк-вокал</td><td>2000–2008</td> </tr>
+            <tr><td>Denny</td><td>бас-гитара</td><td>2001–2008</td> </tr>
+            <tr><td>Nancy</td><td>клавишные</td><td>2003–2008</td> </tr>
+            <tr><td>Henry</td><td>ударные</td><td>2000–2008</td> </tr>
+        </tbody>
+    </table>
+    <hr>
+    <a href="auth.html">Вход / Регистрация</a>
+
+    <h2>Вступить в фан-клуб Samurai</h2>
+    <form>
+        <h2 style="margin-top: 0;">Анкета кандидата</h2>
+        <p>Никнейм:</p>
+        <input type="text" placeholder="Ваш ник"><br><br>
+        <p>Email:</p>
+        <input type="email" placeholder="rockergirl@samurai.nightcity"><br><br>
+        <p>Любимый альбом:</p>
+        <input type="radio" name="album"> The Samurai Album<br>
+        <input type="radio" name="album"> No Future<br><br>
+        <p>Почему ты хочешь вступить?</p>
+        <textarea rows="4" cols="50" placeholder="Расскажи..."></textarea><br><br>
+        <button style="background: linear-gradient(90deg, #ff3366, #ff6633); color: white; border: none; padding: 10px 28px; font-weight: bold;">Отправить заявку</button>
+    </form>
+
+    <hr>
+    <h2>Способы подключения CSS</h2>
+    <div class="flex-css-demos">
+        <div class="external-demo"><p>Внешний CSS – файл style.css</p></div>
+        <div class="internal-demo"><p>Внутренний CSS – тег style</p></div>
+        <div class="import-demo"><p>Импортированный CSS – @import url('import.css')</p></div>
+        <div style="background: #2a1e2c; border-left: 4px solid #ffaa33; padding: 12px; border-radius: 8px;"><p>Инлайн-стиль – атрибут style</p></div>
+    </div>
+
+    <footer id="footer-note">
+        <p>© 2026, фан-страница SAMURAI</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,8 @@
+.import-demo {
+    background: #1e2a2a;
+    border-left: 4px solid #88ff66;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    font-family: monospace;
+}

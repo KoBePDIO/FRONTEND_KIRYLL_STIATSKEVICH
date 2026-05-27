@@ -1,0 +1,8 @@
+.external-demo {
+    background: #0f212e;
+    border-left: 4px solid #00d2ff;
+    padding: 12px;
+    margin: 12px 0;
+    border-radius: 8px;
+    font-family: monospace;
+}
