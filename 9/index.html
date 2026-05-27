@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Лаба 9 — JS</title>
+    <!-- СПОСОБ 2: внутренний скрипт в head -->
+    <script>
+        function testIf() {
+            let a = prompt("if/else: введи число");
+            if (a === null) return;
+            if (a > 0) alert("положительное");
+            else if (a < 0) alert("отрицательное");
+            else alert("ноль");
+        }
+        function testSwitch() {
+            let d = prompt("switch: день недели (1-7)");
+            switch (Number(d)) {
+                case 1: alert("ПН"); break;
+                case 2: alert("ВТ"); break;
+                case 3: alert("СР"); break;
+                case 4: alert("ЧТ"); break;
+                case 5: alert("ПТ"); break;
+                case 6: alert("СБ"); break;
+                case 7: alert("ВС"); break;
+                default: alert("ошибка");
+            }
+        }
+        function testFor() {
+            let sum = 0;
+            for (let i = 1; i <= 5; i++) sum += i;
+            alert("for: сумма 1..5 = " + sum);
+        }
+        function testWhile() {
+            let i = 1, res = "";
+            while (i <= 3) { res += i + " "; i++; }
+            alert("while: " + res);
+        }
+        function testDoWhile() {
+            let x = 1, out = "";
+            do { out += x + " "; x++; } while (x <= 3);
+            alert("do..while: " + out);
+        }
+        function testBreak() {
+            let s = "";
+            for (let i = 1; i <= 10; i++) {
+                if (i === 5) { s += "[break на 5]"; break; }
+                s += i + " ";
+            }
+            alert("break: " + s);
+        }
+        function testContinue() {
+            let s = "";
+            for (let i = 1; i <= 5; i++) {
+                if (i === 3) { s += "[пропуск 3] "; continue; }
+                s += i + " ";
+            }
+            alert("continue: " + s);
+        }
+        function testReturn() {
+            function mult(a, b) { return a * b; }
+            let r = mult(4, 5);
+            alert("return: 4*5 = " + r);
+        }
+        // диалоги
+        function showAlert() { alert("Это alert"); }
+        function showConfirm() { let ok = confirm("Нажми OK или Отмена"); alert(ok ? "OK" : "Отмена"); }
+        function showPrompt() { let name = prompt("Твое имя?"); if(name) alert("Привет, " + name); }
+    </script>
+  
+</head>
+<body>
+    <h2>Лаба 9: операторы и 4 способа внедрения JS</h2>
+
+    <!-- СПОСОБ 1: внешний скрипт (lab9.js) -->
+    <button onclick="externalFunc()">Способ 1: внешний скрипт</button>
+    <script src="script.js"></script>
+
+    <!-- СПОСОБ 2: внутренний скрипт (уже в head) — используем функции оттуда -->
+    <button onclick="testIf()">if/else</button>
+    <button onclick="testSwitch()">switch</button>
+    <button onclick="testFor()">for</button>
+    <button onclick="testWhile()">while</button>
+    <button onclick="testDoWhile()">do..while</button>
+    <button onclick="testBreak()">break</button>
+    <button onclick="testContinue()">continue</button>
+    <button onclick="testReturn()">return</button>
+    <button onclick="showAlert()">alert</button>
+    <button onclick="showConfirm()">confirm</button>
+    <button onclick="showPrompt()">prompt</button>
+
+    <!-- СПОСОБ 3: inline JS прямо в атрибуте (без отдельной функции) -->
+    <button onclick="alert('Это inline-скрипт (способ 3)')">Способ 3: inline</button>
+
+    <!-- СПОСОБ 4: псевдо-ссылка javascript: -->
+    <a href="javascript:alert('Способ 4: javascript: псевдоссылка')">Способ 4: javascript: ссылка</a>
+</body>
+</html>
