@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вариант 0 · Резиновый макет (SAMURAI + Microgrids)</title>
+    <meta name="keywords" content="Samurai, Cyberpunk, рок-группа">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        /* ========== 1. ОРИГИНАЛЬНЫЕ СТИЛИ САЙТА ========== */
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #0a0c12;
+            color: #eef2ff;
+            line-height: 1.5;
+            padding: 2rem;
+        }
+        h2 { font-size: 1.8rem; border-left: 4px solid #ff3366; padding-left: 1rem; margin: 1.5rem 0 1rem; color: #ffcc88; }
+        
+        .adaptive-container { max-width: 1280px; margin: 0 auto; padding: 1.5rem; }
+        .header { display: flex; flex-direction: row; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; }
+        .main-nav { display: flex; flex-direction: row; gap: 1.5rem; flex-wrap: wrap; }
+        
+        .grid-blocks { display: flex; flex-flow: row wrap; gap: 1.5rem; }
+        .block { background: rgba(15,25,35,0.6); padding: 1.5rem; border: 1px solid #334155; border-radius: 8px; }
+        
+        .block-1, .block-2, .block-3 { flex: 1 1 30%; }
+        .block-4 { flex: 1 1 100%; }
+        .block-5, .block-6 { flex: 1 1 calc(50% - 0.75rem); }
+
+        /* Таблица и прочее */
+        table { width: 100%; border-collapse: collapse; margin: 1.5rem 0; background: rgba(15,25,35,0.6); border-radius: 8px; overflow: hidden; }
+        th, td { padding: 12px 10px; border: 1px solid #ff5566; }
+        img { max-width: 100%; height: auto; border-radius: 8px; }
+
+        /* ========== 2. СТИЛИ ТВОИХ МИКРОСЕТОК (Адаптивные) ========== */
+        /* Блоки для микросеток сделаем 50/50, чтобы они сжимались */
+        .block-micro-left, .block-micro-right { 
+            flex: 1 1 calc(50% - 0.75rem); 
+            display: flex; 
+            flex-direction: column; 
+            align-items: stretch;
+            background: #f5f5f5; /* Светлый фон, чтобы выделить на темном сайте */
+            color: #333;
+        }
+
+        /* --- МИКРОСЕТКА: ФОРМА --- */
+        .m-form { width: 100%; }
+        .m-form-title { text-align: center; font-size: 16px; font-weight: bold; margin-bottom: 15px; color: #000; text-transform: uppercase; }
+        .m-input-group { margin-bottom: 10px; }
+        .m-input { width: 100%; padding: 10px; border: 1px solid #ccc; background: #eee; font-size: 13px; outline: none; }
+        .m-red-tag { background: #ff0033; color: white; font-size: 9px; padding: 2px 8px; display: block; width: 100%; }
+        .m-form-btn { border: 2px solid #000; background: white; padding: 8px 15px; font-weight: bold; cursor: pointer; text-transform: uppercase; font-size: 12px; margin-left: auto; display: block; }
+
+        /* --- МИКРОСЕТКА: ТОВАР --- */
+        .m-card { width: 100%; position: relative; display: flex; flex-direction: column; align-items: center; text-align: center; }
+        .m-badge { background: #8b14c1; color: white; padding: 4px 20px; font-size: 12px; font-weight: bold; border-radius: 0 0 10px 10px; position: absolute; top: -24px; left: 50%; transform: translateX(-50%); white-space: nowrap; }
+        .m-halva { position: absolute; right: 0; top: 10px; text-align: right; }
+        .m-h-name { color: #d32f2f; font-weight: 900; font-style: italic; font-size: 14px; display: block; }
+        .m-price-now { color: #e62e2e; font-size: 22px; font-weight: bold; }
+        .m-price-old { color: #999; text-decoration: line-through; font-size: 16px; margin-left: 5px; }
+        .m-timer { background: #8b14c1; color: white; width: calc(100% + 3rem); margin: 20px -1.5rem -1.5rem; padding: 10px; font-size: 12px; border-radius: 0 0 8px 8px; }
+
+        /* ========== 3. BREAKPOINTS ========== */
+        @media (max-width: 768px) {
+            .block-1, .block-2, .block-3, .block-4, .block-5, .block-6, .block-micro-left, .block-micro-right {
+                flex: 1 1 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="adaptive-container">
+        <header class="header">
+            <div class="logo" style="font-size: 2rem; font-weight: bold; color: #ff3366;">SAMURAI</div>
+            <nav class="main-nav">
+                <a href="#">Главная</a>
+                <a href="#">Дискография</a>
+                <a href="#">Фото</a>
+                <a href="#">Медиа</a>
+                <a href="#">Фан-клуб</a>
+            </nav>
+        </header>
+
+        <div class="grid-blocks">
+            <div class="block block-1">
+                <h2>О группе</h2>
+                <p><strong>SAMURAI</strong> - культовая рок-группа из Найт-Сити.</p>
+            </div>
+            <div class="block block-2">
+                <h2>Дискография</h2>
+                <ul><li>2003 - The Samurai Album</li><li>2007 - No Future</li></ul>
+            </div>
+            <div class="block block-3">
+                <h3>Топ-3 песен</h3>
+                <ol><li>Chippin' In</li><li>Never Fade Away</li><li>Black Dog</li></ol>
+            </div>
+
+           
+
+            <div class="block block-micro-left">
+                <div class="m-form">
+                    <h2 class="m-form-title">Заказ услуг</h2>
+                    <div class="m-input-group">
+                        <select class="m-input" style="background:#ddd; font-weight:bold;"><option>УСЛУГА №1</option></select>
+                    </div>
+                    <div class="m-input-group">
+                        <input type="text" class="m-input" placeholder="Имя">
+                        <span class="m-red-tag">обязательное поле</span>
+                    </div>
+                    <div class="m-input-group">
+                        <input type="text" class="m-input" placeholder="Телефон">
+                        <span class="m-red-tag">обязательное поле</span>
+                    </div>
+                    <div style="font-size:12px; margin: 10px 0;"><i class="fa-solid fa-paperclip"></i> Прикрепить файл</div>
+                    <button class="m-form-btn">Отправить</button>
+                </div>
+            </div>
+
+            <div class="block block-micro-right">
+                <div class="m-card">
+                    <div class="m-badge">товар недели</div>
+                    <div style="display:flex; width:100%; justify-content:space-between; font-size:18px;">
+                        <i class="fa-regular fa-heart"></i>
+                        <i class="fa-solid fa-cart-plus"></i>
+                    </div>
+                    <div class="m-halva">
+                        <span class="m-h-name">Халва</span>
+                        <span style="font-size:9px;">до 8 мес</span>
+                    </div>
+                    <img src="doz.png" style="width:120px; margin:10px 0;">
+                    <p style="font-size:11px; color:#999;">Смарт-устройства</p>
+                    <h3 style="font-size:14px; margin-bottom:10px;">Дозатор Evolution FR-1</h3>
+                    <div style="margin-bottom:10px;">
+                        <span class="m-price-now">49.00</span> <span class="m-price-old">59.76</span>
+                    </div>
+                    <div class="m-timer">до конца акции осталось <strong>02:03:10</strong></div>
+                </div>
+            </div>
+
+            <div class="block block-5">
+                <h2>Фан-клуб</h2>
+                <p>Вступай в наши ряды, чумба!</p>
+                <h2>Вступить в фан-клуб Samurai</h2>
+                <form>
+                    <p>Никнейм:</p>
+                    <input type="text" placeholder="Ваш ник">
+                    <p>Email:</p>
+                    <input type="email" placeholder="rockergirl@samurai.nightcity">
+                    <p>Любимый альбом:</p>
+                    <input type="radio" name="album"> The Samurai Album<br>
+                    <input type="radio" name="album"> No Future
+                    <p>Почему ты хочешь вступить?</p>
+                    <textarea rows="4" cols="50" placeholder="Расскажи..."></textarea>
+                    <button>Отправить заявку</button>
+                </form>
+            </div>
+            <div class="block block-6">
+                <h2>Медиа</h2>
+                <p>Слушай рок на полную.</p>
+                <div>
+                        <h3>Аудио</h3>
+                        <audio src="audio/SAMURAI_Refused_-_Chippin_In_65258049.mp3" controls style="width: 100%; max-width: 500px;"></audio>
+                        <p>(пример трека - Chippin' In)</p>
+                    </div>
+                    <div>
+                        <h3>Видео</h3>
+                        <video src="video/CyberShow.mp4" controls width="400" style="border-radius: 8px; border: 1px solid #ff6680;"></video>
+                    </div>
+            </div>
+        </div>
+
+        <h2 style="margin-top: 30px;">Состав группы</h2>
+        <table>
+            <thead><tr><th>Участник</th><th>Роль</th></tr></thead>
+            <tbody>
+                <tr><td>Johnny Silverhand</td><td>вокал, гитара</td></tr>
+                <tr><td>Kerry Eurodyne</td><td>гитара</td></tr>
+            </tbody>
+        </table>
+
+        <footer class="footer" style="text-align: center; padding: 20px; border-top: 1px solid #334155; margin-top: 20px;">
+            <p>© 2026 ПЗТ-43 | Стецкевич Кирилл</p>
+        </footer>
+    </div>
+</body>
+</html>
