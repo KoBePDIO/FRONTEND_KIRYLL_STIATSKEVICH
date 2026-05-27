@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Вариант 0 · Резиновый макет</title>
+    <meta name="keywords" content="Samurai, Cyberpunk, рок-группа">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="adaptive-container">
+        <header class="header">
+    <div class="logo">SAMURAI</div>
+    <input type="checkbox" id="burger-toggle" class="burger-toggle">
+    <label for="burger-toggle" class="burger-icon">☰</label>
+    <nav class="main-nav">
+        <a href="#">Главная</a>
+        <a href="#">Дискография</a>
+        <a href="#">Фото</a>
+        <a href="#">Медиа</a>
+        <a href="#">Фан-клуб</a>
+    </nav>
+</header>
+
+        <!-- ===== СЕТКА ИЗ 6 БЛОКОВ (резиновая) ===== -->
+        <div class="grid-blocks">
+            <div class="block block-1">
+                <h2>О группе</h2>
+                <p class="highlight"><strong>SAMURAI</strong> - культовая рок-группа, основанная в 2000 году в Найт-Сити. Их музыка сочетает панк-рок, метал и индастриал. Коллектив распался в 2008, но остаётся символом бунта против корпораций. Вокалист - Джонни Сильверхенд, гитарист - Керри Евродин.</p>
+                <p><strong>Основные достижения:</strong> три студийных альбома, платиновый статус «No Future», хит «Chippin' In» - негласный гимн рокеров, аншлаги на стадионах.</p>
+            </div>
+            <div class="block block-2">
+                <h2>Дискография</h2>
+                <ul class="discography">
+                    <li>2003 - The Samurai Album</li>
+                    <li>2005 - Never Fade Away (сингл)</li>
+                    <li>2007 - No Future</li>
+                    <li>2020 - Посмертные сборники</li>
+                </ul>
+            </div>
+            <div class="block block-3">
+                <h3>Топ-3 песен по версии фанатов</h3>
+                <ol>
+                    <li>Chippin' In</li>
+                    <li>Never Fade Away</li>
+                    <li>Black Dog</li>
+                </ol>
+            </div>
+            <div class="block block-4">
+                <h2>Фото группы</h2>
+                <div class="flex-photos">
+                    <figure>
+                        <img src="Images/Morro.jpg" alt="Samurai live 2005" width="400" height="250">
+                        <figcaption>Концерт в парке «Морро», 2005</figcaption>
+                    </figure>
+                    <figure>
+                        <img class="rotate-photo" src="Images/Jhonny.jpg" alt="Johnny Silverhand" width="300" height="250">
+                        <figcaption>Джонни Сильверхенд, фронтмен (наведи для вращения)</figcaption>
+                    </figure>
+                </div>
+            </div>
+            <div class="block block-5">
+                <h2>Вступить в фан-клуб Samurai</h2>
+                <form>
+                    <p>Никнейм:</p>
+                    <input type="text" placeholder="Ваш ник">
+                    <p>Email:</p>
+                    <input type="email" placeholder="rockergirl@samurai.nightcity">
+                    <p>Любимый альбом:</p>
+                    <input type="radio" name="album"> The Samurai Album<br>
+                    <input type="radio" name="album"> No Future
+                    <p>Почему ты хочешь вступить?</p>
+                    <textarea rows="4" cols="50" placeholder="Расскажи..."></textarea>
+                    <button>Отправить заявку</button>
+                </form>
+            </div>
+            <div class="block block-6">
+                <h2>Медиа</h2>
+                <div class="flex-media">
+                    <div>
+                        <h3>Аудио</h3>
+                        <audio src="audio/SAMURAI_Refused_-_Chippin_In_65258049.mp3" controls style="width: 100%; max-width: 500px;"></audio>
+                        <p>(пример трека - Chippin' In)</p>
+                    </div>
+                    <div>
+                        <h3>Видео</h3>
+                        <video src="video/CyberShow.mp4" controls width="400" style="border-radius: 8px; border: 1px solid #ff6680;"></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== ТАБЛИЦА (оригинал) ===== -->
+        <h2>Состав группы</h2>
+        <table>
+            <thead><tr><th>Участник</th><th>Роль</th><th>Годы активности</th></tr></thead>
+            <tbody>
+                <tr><tr>Johnny Silverhand</td><td>вокал, гитара</td><td>2000–2008</td> </tr>
+                <tr><td>Kerry Eurodyne</td><td>гитара, бэк-вокал</td><td>2000–2008</td> </tr>
+                <tr><td>Denny</td><td>бас-гитара</td><td>2001–2008</td> </tr>
+                <tr><td>Nancy</td><td>клавишные</td><td>2003–2008</td> </tr>
+                <tr><td>Henry</td><td>ударные</td><td>2000–2008</td> </tr>
+            </tbody>
+        </table>
+
+        <!-- ===== ПОДВАЛ ===== -->
+        <footer class="footer">
+            <p>© 2026, фан-страница SAMURAI</p>
+            <div class="social-links">
+                <a href="#">Twitter</a> | <a href="#">Instagram</a> | <a href="#">YouTube</a>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

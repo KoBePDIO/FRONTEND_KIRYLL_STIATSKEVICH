@@ -1,0 +1,150 @@
+* {
+    margin: 0;                     /* убираем отступы */
+    padding: 0;                    /* убираем внутренние отступы */
+    box-sizing: border-box;        /* ширина включает границы и паддинги */
+}
+body {
+    font-family: monospace;        /* моноширинный шрифт для наглядности */
+    background: #1a1a2e;           /* тёмный фон страницы */
+    color: #eee;                   /* светлый текст */
+    padding: 2rem;                 /* отступы вокруг контента */
+}
+h1 {
+    margin-bottom: 1rem;           /* отступ под заголовком */
+}
+/* общие стили для всех демо-блоков (фоны, отступы, тени) */
+.d1, .d2, .d3, .d4, .d5, .d6, .d7, .d8, .d9, .d10 {
+    background: #2d2f36;           /* тёмно-серый фон контейнера */
+    margin: 1rem 0;                /* вертикальные отступы */
+    padding: 8px;                  /* внутренний отступ */
+    border-radius: 8px;            /* скругление углов */
+}
+.d1 div, .d2 div, .d3 div, .d4 div, .d5 div, .d6 div, .d7 div, .d8 div, .d9 div, .d10 div {
+    background: #f72585;           /* ярко‑розовый фон элементов */
+    padding: 8px;                  /* отступ внутри элемента */
+    margin: 4px;                   /* внешний отступ между элементами */
+    text-align: center;            /* текст по центру */
+    border-radius: 4px;            /* лёгкое скругление */
+    color: white;                  /* белый текст */
+}
+/* чётные элементы внутри каждого демо‑блока – голубые */
+.d1 div:nth-child(even), .d2 div:nth-child(even),
+.d3 div:nth-child(even), .d4 div:nth-child(even),
+.d5 div:nth-child(even), .d6 div:nth-child(even),
+.d7 div:nth-child(even), .d8 div:nth-child(even),
+.d9 div:nth-child(even), .d10 div:nth-child(even) {
+    background: #4cc9f0;           /* голубой фон */
+    color: #1e2a3e;                /* тёмный текст */
+}
+
+/* ========== СВОЙСТВА КОНТЕЙНЕРА ========== */
+
+/* 1. display: grid + grid-template-columns + repeat() */
+.d1 {
+    display: grid;                           /* включаем Grid */
+    grid-template-columns: repeat(3, 1fr);   /* 3 колонки, каждая занимает 1 долю (fr) */
+    gap: 8px;                                /* отступы между рядами и колонками */
+}
+
+/* 2. grid-template-rows + minmax() */
+.d2 {
+    display: grid;                                                  /* Grid-контейнер */
+    grid-template-columns: repeat(3, 1fr);                          /* 3 колонки по долям */
+    grid-template-rows: minmax(60px, auto) minmax(40px, auto);     /* первая строка минимум 60px, вторая минимум 40px, auto – по содержимому */
+    gap: 8px;                                                       /* отступы */
+}
+
+/* 3. grid-template-areas – имена областей */
+.d3 {
+    display: grid;                                                 /* Grid */
+    grid-template-areas:                                           /* задаём имена областям */
+        "header header"                                            /* первая строка: два блока "header" */
+        "sidebar content"                                          /* вторая строка: "sidebar" и "content" */
+        "footer footer";                                           /* третья строка: два "footer" */
+    gap: 8px;                                                      /* отступы */
+}
+.d3 div:first-child { grid-area: header; }      /* назначаем элемент в область header */
+.d3 div:nth-child(2)  { grid-area: sidebar; }   /* элемент в область sidebar */
+.d3 div:nth-child(3)  { grid-area: content; }   /* элемент в область content */
+.d3 div:last-child    { grid-area: footer; }    /* элемент в область footer */
+
+/* 4. старые свойства gap: grid-row-gap, grid-column-gap, grid-gap */
+.d4 {
+    display: grid;                           /* Grid */
+    grid-template-columns: repeat(3, 1fr);   /* три колонки */
+    grid-row-gap: 20px;                      /* отступ между строками (старый синтаксис) */
+    grid-column-gap: 40px;                   /* отступ между колонками (старый синтаксис) */
+    /* grid-gap: 20px 40px; – сокращённая запись для двух предыдущих */
+}
+
+/* 5. justify-content + align-content + place-content (выравнивание всей сетки внутри контейнера) */
+.d5 {
+    display: grid;                                        /* Grid */
+    grid-template-columns: repeat(2, 80px);               /* две колонки шириной 80px */
+    grid-template-rows: repeat(2, 50px);                  /* две строки высотой 50px */
+    justify-content: center;                              /* выравнивание сетки по горизонтали (по центру) */
+    align-content: center;                                /* выравнивание сетки по вертикали (по центру) */
+    height: 180px;                                        /* высота контейнера, чтобы увидеть vertical align */
+    gap: 8px;                                             /* отступы между ячейками */
+    place-content: center center;                         /* сокращение: align-content justify-content */
+}
+
+/* 6. justify-items + align-items + place-items (выравнивание содержимого внутри ячеек) */
+.d6 {
+    display: grid;                                    /* Grid */
+    grid-template-columns: repeat(3, 1fr);            /* три колонки */
+    justify-items: center;                            /* содержимое ячеек по горизонтали – по центру */
+    align-items: end;                                 /* содержимое ячеек по вертикали – прижато к низу */
+    height: 90px;                                     /* задаём высоту, чтобы увидеть vertical align */
+    gap: 8px;                                         /* отступы */
+    place-items: end center;                          /* сокращение: align-items justify-items */
+}
+.d6 div {
+    width: 80%;                                       /* ограничиваем ширину, чтобы justify-items: center сработал */
+}
+
+/* 7. grid-auto-flow + grid-auto-rows + grid-auto-columns (автоматическое создание строк/колонок) */
+.d7 {
+    display: grid;                               /* Grid */
+    grid-template-columns: repeat(2, 80px);      /* две явные колонки по 80px */
+    grid-auto-flow: column;                      /* новые элементы создают колонки, а не строки (auto-flow) */
+    grid-auto-rows: 50px;                        /* высота автоматически создаваемых строк */
+    grid-auto-columns: 100px;                    /* ширина автоматически создаваемых колонок */
+    gap: 8px;                                    /* отступы */
+}
+
+/* 8. grid – универсальное сокращение для всех свойств контейнера */
+.d8 {
+    display: grid;                               /* Grid */
+    grid: repeat(2, 1fr) / repeat(3, 1fr);       /* строки / колонки (аналог grid-template-rows / grid-template-columns) */
+    gap: 8px;                                    /* отступы */
+}
+
+/* ========== СВОЙСТВА ЭЛЕМЕНТОВ (дочерних блоков) ========== */
+
+/* 9. grid-row + grid-column + span – размещение элементов в сетке */
+.d9 {
+    display: grid;                               /* Grid-контейнер для .d9 */
+    grid-template-columns: repeat(3, 1fr);       /* три колонки */
+    gap: 8px;                                    /* отступы */
+}
+.d9 .a {
+    grid-row: 1 / 3;              /* занимает строки с 1 по 3 (т.е. две строки) */
+    grid-column: 1 / 2;           /* занимает колонки с 1 по 2 (одна колонка) */
+}
+.d9 .b {
+    grid-column: 2 / span 2;      /* начинается со 2 колонки, растягивается на 2 колонки (span 2) */
+}
+
+/* 10. более длинная запись: grid-row-start/end и grid-column-start/end */
+.d10 {
+    display: grid;                               /* Grid */
+    grid-template-columns: repeat(2, 1fr);       /* две колонки */
+    gap: 8px;                                    /* отступы */
+}
+.d10 .x {
+    grid-row-start: 1;            /* начальная линия строки = 1 */
+    grid-row-end: 3;              /* конечная линия строки = 3 (занимает 2 строки) */
+    grid-column-start: 1;         /* начальная линия колонки = 1 */
+    grid-column-end: 3;           /* конечная линия колонки = 3 (занимает 2 колонки) */
+}
