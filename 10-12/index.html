@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Защита ЛР №10-12, вариант 19</title>
+    <!-- Задание 1: скрипт в head -->
+    <script>
+        function showCurrentYear() {
+            var now = new Date();
+            var year = now.getFullYear();
+            alert("Текущий год: " + year);
+        }
+    </script>
+    <!-- Подключение внешнего скрипта для задания 4 -->
+    <script src="task4.js" defer></script>
+</head>
+<body>
+    <h1>Тематический контроль (Вариант 19)</h1>
+
+    <!-- ЗАДАНИЕ 1 -->
+    <h2>Задание 1: Текущий год</h2>
+    <button onclick="showCurrentYear()">Показать год</button>
+
+    <!-- ЗАДАНИЕ 2 (скрипт внутри body) -->
+    <h2>Задание 2: Вывод фамилии и имени 19 раз</h2>
+    <div id="task2_output"></div>
+    <script>
+        // Задание 2: вывести фамилию имя 19 раз + 5
+        var fullName = "Стецкевич Кирилл";
+        var count = 19+5;
+        var outputDiv = document.getElementById("task2_output");
+        var resultText = "";
+        for (var i = 0; i < count; i++) {
+            resultText += (i+1) + ". " + fullName + "<br>";
+        }
+        outputDiv.innerHTML = resultText;
+    </script>
+
+    <!-- ЗАДАНИЕ 3 (скрипт внутри body) -->
+    <h2>Задание 3: Массив, минимум, замена последнего элемента</h2>
+    <div id="task3_output"></div>
+    <script>
+        // Исходный массив из 5 целых чисел
+        var arr = [12, 5, 8, 3, 10];  // можно любые целые
+        var original = arr.join(", ");
+        
+        // Поиск минимального элемента
+        var min = arr[0];
+        for (var i = 1; i < arr.length; i++) {
+            if (arr[i] < min) min = arr[i];
+        }
+        
+        // Замена последнего элемента на минимальный
+        arr[arr.length - 1] = min;
+        var modified = arr.join(", ");
+        
+        document.getElementById("task3_output").innerHTML = 
+            "<p>Исходный массив: [" + original + "]</p>" +
+            "<p>Минимальный элемент: " + min + "</p>" +
+            "<p>Изменённый массив: [" + modified + "]</p>";
+    </script>
+
+    <!-- ЗАДАНИЕ 4: работа с внешним файлом и функцией -->
+    <h2>Задание 4: Расчёт по формуле y = (x+1)/(x²+3x+2)</h2>
+    <label>Введите x: <input type="number" id="x_input" step="any"></label>
+    <button id="calc_btn">Рассчитать y</button>
+    <div id="task4_result"></div>
+    <script>
+        // Обработчик для задания 4 (вызов внешней функции calculateY)
+        document.getElementById("calc_btn").addEventListener("click", function() {
+            var x = parseFloat(document.getElementById("x_input").value);
+            var y = calculateY(x);
+            var resultDiv = document.getElementById("task4_result");
+            if (y !== null && !isNaN(y)) {
+                resultDiv.innerHTML = "<p>y(" + x + ") = " + y + "</p>";
+            } else {
+                resultDiv.innerHTML = "<p style='color:red'>Ошибка вычисления. Подробности в alert.</p>";
+            }
+        });
+    </script>
+
+    <!-- ЗАДАНИЕ 5: работа со строками -->
+    <h2>Задание 5: Строки, n-й символ (n=19), замена букв 'е' на '@'</h2>
+    <div id="task5_output"></div>
+    <script>
+        // Исходные строки
+        var s1 = "Я люблю БеларусьЯ люблю Беларусь";
+        var s2 = "Я учусь в Политехническом колледже";
+        var n = 19;   // номер варианта
+        
+        // 1. Длина строки s1
+        var lenS1 = s1.length;
+        
+        // 2. Выделить n-ый символ в s1 (считаем с 1)
+        var nthChar = "";
+        var charCode = null;
+        if (n >= 1 && n <= s1.length) {
+            nthChar = s1[n-1];   // индексация с 0
+            charCode = s1.charCodeAt(n-1);
+        } else {
+            nthChar = "нет такого символа (n > длины строки)";
+            charCode = "невозможно";
+        }
+        
+        // 3. Замена в s2 всех 'е' на '@'
+        var s2Replaced = s2.replace(/е/g, "@");
+        
+        // Вывод результатов
+        var output5 = "<p>s1 = \"" + s1 + "\"</p>";
+        output5 += "<p>Длина s1 = " + lenS1 + "</p>";
+        output5 += "<p>n = " + n + "-й символ в s1: '" + nthChar + "'</p>";
+        output5 += "<p>ASCII/Unicode код символа: " + charCode + "</p>";
+        output5 += "<p>s2 исходная: \"" + s2 + "\"</p>";
+        output5 += "<p>s2 после замены 'е' на '@': \"" + s2Replaced + "\"</p>";
+        
+        document.getElementById("task5_output").innerHTML = output5;
+    </script>
+</body>
+</html>
